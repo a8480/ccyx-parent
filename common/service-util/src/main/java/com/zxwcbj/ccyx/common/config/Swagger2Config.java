@@ -76,7 +76,7 @@ public class Swagger2Config {
                   /**
                  * 是一个路径筛选器，它使用正则表达式来限制包含在生成的Swagger文档中的API接口路径。
                  * 具体来说，这行代码指定了只包括那些路径匹配正则表达式/admin/.* 的API接口。
-                 * 其他路径则被排除
+                 * 其他路径则被排除,只显示admin路径下的页面
                  * */
                 .paths(PathSelectors.regex("/admin/.*"))
                 .build()
