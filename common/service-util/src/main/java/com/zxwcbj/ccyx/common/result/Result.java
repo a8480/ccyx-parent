@@ -9,18 +9,33 @@ import lombok.Data;
 @Data
 public class Result<T> {
     /**状态码*/
-    Integer code;
+   private Integer code;
     /**消息*/
-    String message;
+    private String message;
     /**数据*/
-    T data;
+    private T data;
 
     /**构造私有化*/
     private Result() {
     }
+        //设置数据,返回对象的方法
+    public static <T> Result<T> build(T data, Integer code, String message) {
+        //创建Resullt对象，设置值，返回对象
+        Result<T> result = new Result<>();
+        //判断返回结果中是否需要数据
+        if (data != null) {
+            //设置数据到result对象
+            result.setData(data);
+        }
+        //设置其他值
+        result.setCode(code);
+        result.setMessage(message);
+        //返回设置值之后的对象
+        return result;
+    }
 
     /**设置数据,返回对象的方法*/
-    public static <T> Result<T> build( T data,ResultCodeEnum resultCodeEnum) {
+    public static <T> Result<T>     build( T data,ResultCodeEnum resultCodeEnum) {
         /*创建Resullt对象，设置值，返回对象*/
         Result<T> result=new Result<>();
         /*判断返回结果中是否需要数据*/
@@ -31,11 +46,14 @@ public class Result<T> {
         //设置其他值
         result.setCode(resultCodeEnum.getCode());
         result.setMessage(resultCodeEnum.getMessage());
-        return null;
+        return result;
     }
     /**成功的方法*/
     public  static <T> Result<T> ok(T data){
         return build(data,ResultCodeEnum.SUCCESS);
+    }
+        public  static <T> Result<T> ok(){
+        return build(null,ResultCodeEnum.SUCCESS);
     }
     /**失败的方法*/
     public static <T> Result<T> fail(T data){
