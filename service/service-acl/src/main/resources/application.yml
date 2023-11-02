@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: service-acl
+  profiles:
+    active: dev
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr:  172.18.0.7:8848  # 47.113.150.155:28848

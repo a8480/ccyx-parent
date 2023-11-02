@@ -46,7 +46,7 @@ public class Swagger2Config {
                 .apiInfo(webApiInfo())
                .select()
                 //只显示api路径下的页面
-               .apis(RequestHandlerSelectors.basePackage("com.zxwcbj.ccyx.common.controller"))
+               .apis(RequestHandlerSelectors.basePackage("com.zxwcbj.ccyx"))
                 //只显示api路径下的页面
                .paths(PathSelectors.regex("/api/.*"))
                .build()

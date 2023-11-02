@@ -19,13 +19,12 @@ public class GlobalExceptionHandler {
      * 异常处理器.当你出现这个异常时调用下面的方法
      */
     @ExceptionHandler(Exception.class)
-
     /**
      * 返回json数据
      * */
     @ResponseBody
-    public Result error(Exception e) {
-        e.printStackTrace();
+    public Result error(Exception exception) {
+        exception.printStackTrace();
         return Result.fail(null);
     }
 
@@ -38,6 +37,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(CcyxException.class)
     @ResponseBody
     private Result error(CcyxException ccxException) {
-        return Result.fail(null);
+        return Result.build(null, ccxException.getCode(), ccxException.getMessage());
     }
 }

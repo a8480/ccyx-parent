@@ -1,12 +1,14 @@
 package com.zxwcbj.ccyx.common.exception;
 
 import com.zxwcbj.ccyx.common.result.ResultCodeEnum;
+import lombok.Data;
 
 /**
  * 统一异常处理
  * @author a8480
  */
-public class CcyxException extends Throwable {
+@Data
+public class CcyxException extends RuntimeException {
     private Integer code;
     private String message;
 
