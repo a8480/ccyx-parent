@@ -18,4 +18,11 @@ public interface RoleService extends IService<Role> {
      * @return com.baomidou.mybatisplus.core.metadata.IPage<com.zxwcbj.ccyx.model.acl.Role>
      **/
     IPage<Role> selectRolePageList(Page<Role> page, RoleQueryVo roleQueryVo);
+
+    /**
+     * 分配角色权限
+     * @param  adminId 用户管理员的ID
+     * @param roleId 包含要分配的角色权限的ID
+     **/
+    void saveAdmin(Long adminId, Long[] roleId);
 }

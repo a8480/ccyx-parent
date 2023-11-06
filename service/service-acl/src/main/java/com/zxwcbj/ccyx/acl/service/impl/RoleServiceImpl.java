@@ -5,8 +5,10 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.mysql.cj.log.Log;
 import com.zxwcbj.ccyx.acl.mapper.RoleMapper;
 import com.zxwcbj.ccyx.acl.service.RoleService;
+import com.zxwcbj.ccyx.model.acl.AdminRole;
 import com.zxwcbj.ccyx.model.acl.Role;
 import com.zxwcbj.ccyx.vo.acl.RoleQueryVo;
 import org.springframework.stereotype.Service;
@@ -35,5 +37,14 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
 * 可以将 RoleMapper 进行依赖注入
 * */
         return baseMapper.selectPage(page, wrapper);
+    }
+    /**
+     * 为用户分配角色
+     **/
+    @Override
+    public void saveAdmin(Long adminId, Long[] roleId) {
+        LambdaQueryWrapper<AdminRole> warp =new LambdaQueryWrapper<>();
+        warp.eq(AdminRole::getAdminId,adminId);
+
     }
 }
