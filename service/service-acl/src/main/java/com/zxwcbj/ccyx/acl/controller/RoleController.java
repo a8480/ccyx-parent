@@ -10,10 +10,9 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * 角色管理
@@ -23,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/admin/acl/role")
 @Api(tags = "用户管理")
 @Slf4j
+@CrossOrigin
 public class RoleController {
     /**
      * 如果不进行依赖注入就会,报错
@@ -42,5 +42,41 @@ public class RoleController {
         IPage<Role> iPage= roleService.selectRolePageList(page,roleQueryVo);
         return Result.ok(iPage);
     }
+    @ApiOperation("添加角色")
+    @PostMapping("/save")
+    public Result save(@RequestBody Role role){
+        roleService.save(role);
+        return Result.ok(null);
+    }
+    @ApiOperation("修改角色")
+    @PutMapping ("/update")
+    public Result updateById(@RequestBody Role role){
+        roleService.updateById(role);
+        return Result.ok(null);
+    }
+    @ApiOperation("根据id查询角色")
+    @GetMapping("/get/{id}")
+    public Result getById(@PathVariable Long id){
+        Role role=roleService.getById(id);
+        return Result.ok(role);
+    }
+    @ApiOperation("根据id删除角色")
+    @DeleteMapping("/remove/{id}")
+    public Result removeById(@PathVariable Long id){
+        roleService.removeById(id);
+        return Result.ok(null);
+    }
+    @ApiOperation("批量删除")
+    @DeleteMapping("/batchRemove")
+    public Result removeRoles(@RequestBody  List<Long> ids){
+        roleService.removeByIds(ids);
+        return Result.ok(null);
+    }
+/*    @ApiOperation("获取角色所有权限")
+    @GetMapping("/toAssign/{roleId}")
+    public Result getAssign(@PathVariable Long roleId){
+        role
+        return Result.ok(null);
+    }*/
 
 }

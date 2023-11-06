@@ -9,12 +9,14 @@ import com.zxwcbj.ccyx.acl.mapper.RoleMapper;
 import com.zxwcbj.ccyx.acl.service.RoleService;
 import com.zxwcbj.ccyx.model.acl.Role;
 import com.zxwcbj.ccyx.vo.acl.RoleQueryVo;
+import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 
 /**
  * @author a8480
  */
+@Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
     /**
      * 1 角色列表(分页查询)
@@ -29,7 +31,9 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         if (!StringUtils.isEmpty(roleName)){
             wrapper.like(Role::getRoleName,roleName);
         }
-//调用方法实现条件分页查询,输出 IPage<Role> 对象
+/*调用方法实现条件分页查询,输出 IPage<Role> 对象
+* 可以将 RoleMapper 进行依赖注入
+* */
         return baseMapper.selectPage(page, wrapper);
     }
 }
