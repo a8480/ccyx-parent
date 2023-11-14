@@ -8,6 +8,8 @@ import com.zxwcbj.ccyx.model.acl.Role;
 import com.zxwcbj.ccyx.vo.acl.RoleQueryVo;
 import org.springframework.stereotype.Service;
 
+import java.util.Map;
+
 /**
  * @author a8480
  */
@@ -24,5 +26,11 @@ public interface RoleService extends IService<Role> {
      * @param  adminId 用户管理员的ID
      * @param roleId 包含要分配的角色权限的ID
      **/
-    void saveAdmin(Long adminId, Long[] roleId);
+    void saveAdminRole(Long adminId, Long[] roleId);
+
+    /**
+     * 获取所有角色，和根据用户id查询用户分配角色列表
+     * @param  adminId 用户id
+     * */
+    Map<String, Object> getRoleByAdminId(Long adminId);
 }
