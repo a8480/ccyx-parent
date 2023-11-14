@@ -17,7 +17,7 @@ import java.util.Map;
 @Api(tags = "登录接口")
 //访问路径
 @RequestMapping("/admin/acl/index")
-/**
+/*
  * 允许跨域调用
  * 跨域。当访问协议IP地址端口号 与访问时不一致时
  * 游览器会报错(Ensure CORS response header values are valid) 如果不写就会出现跨域问题
@@ -30,7 +30,7 @@ public class IndexController {
      **/
     @ApiOperation("登录")
     @PostMapping("/login")
-    public Result<?>  login() throws UnsupportedEncodingException{
+    public Result<?>  login() {
         Map<String, String> map = new HashMap<>();
         map.put("token", "token-admin");
         return Result.ok(map);

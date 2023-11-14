@@ -93,11 +93,10 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionManager, Permis
  * 递归删除菜单
  *
  * @param id 菜单根id
- * @return boolean
  **/
 
 @Override
-    public boolean removeChildById(Long id) {
+    public void removeChildById(Long id) {
          //1 创建List集合idList，封装所有要删除菜单id
         List<Long> list = new ArrayList<>();
          //根据当前菜单id，获取当前菜单下面所有子菜单，
@@ -107,8 +106,7 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionManager, Permis
         list.add(id);
          //调用方法根据多个菜单id删除
         baseMapper.deleteBatchIds(list);
-        return true;
-    }
+}
     //重点：递归找当前菜单下面的所有子菜单
 //第一个参数是当前菜单id
 //第二个参数最终封装List集合，包含所有菜单id

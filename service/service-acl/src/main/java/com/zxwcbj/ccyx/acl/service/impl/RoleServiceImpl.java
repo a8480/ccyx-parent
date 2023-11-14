@@ -11,7 +11,6 @@ import com.zxwcbj.ccyx.acl.service.RoleService;
 import com.zxwcbj.ccyx.model.acl.AdminRole;
 import com.zxwcbj.ccyx.model.acl.Role;
 import com.zxwcbj.ccyx.vo.acl.RoleQueryVo;
-import io.netty.resolver.NameResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -48,7 +47,7 @@ public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements Ro
         List<AdminRole> adminRoleList=adminRoleService.list(wrapper);
          //2.2 通过第一步返回集合，获取所有角色i的列表List<AdminRole>--List<Long>
         List<Long> rolesList=adminRoleList.stream()
-                .map(item -> item.getRoleId())
+                .map(AdminRole::getRoleId)
                 .collect(Collectors.toList());
         //2.3创建新的ist集合，用于存储用户配置角色
         List<Role> assignRoleList=new ArrayList<>();
