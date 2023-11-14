@@ -34,7 +34,7 @@ public class RoleController {
     RoleService roleService;
     @ApiOperation("获取角色分页列表")
     @GetMapping("{current}/{limit}")
-    public Result getPageList(@PathVariable Long current,
+    public Result<?>  getPageList(@PathVariable Long current,
                               @PathVariable Long limit,
                               RoleQueryVo roleQueryVo){
         //创建page对象,接收分页参数,页数和每页要多少条数据
@@ -44,31 +44,31 @@ public class RoleController {
     }
     @ApiOperation("添加角色")
     @PostMapping("/save")
-    public Result save(@RequestBody Role role){
+    public Result<?>  save(@RequestBody Role role){
         roleService.save(role);
         return Result.ok(null);
     }
     @ApiOperation("修改角色")
     @PutMapping ("/update")
-    public Result updateById(@RequestBody Role role){
+    public Result<?>  updateById(@RequestBody Role role){
         roleService.updateById(role);
         return Result.ok(null);
     }
     @ApiOperation("根据id查询角色")
     @GetMapping("/get/{id}")
-    public Result getById(@PathVariable Long id){
+    public Result<?>  getById(@PathVariable Long id){
         Role role=roleService.getById(id);
         return Result.ok(role);
     }
     @ApiOperation("根据id删除角色")
     @DeleteMapping("/remove/{id}")
-    public Result removeById(@PathVariable Long id){
+    public Result<?>  removeById(@PathVariable Long id){
         roleService.removeById(id);
         return Result.ok(null);
     }
     @ApiOperation("批量删除")
     @DeleteMapping("/batchRemove")
-    public Result removeRoles(@RequestBody  List<Long> ids){
+    public Result<?>  removeRoles(@RequestBody  List<Long> ids){
         roleService.removeByIds(ids);
         return Result.ok(null);
     }

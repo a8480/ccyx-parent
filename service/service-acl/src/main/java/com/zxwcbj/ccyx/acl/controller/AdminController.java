@@ -36,35 +36,35 @@ public class AdminController {
 
     @ApiOperation(value = "根据用户id获取角色数据")
 @GetMapping("/toAssign/{adminId}")
-    public Result getRoles(@PathVariable Long adminId){
+    public Result<?>  getRoles(@PathVariable Long adminId){
         Map<String,Object> map=roleService.getRoleByAdminId(adminId);
     return Result.ok(map);
     }
     @ApiOperation("为用户分配角色")
     @PostMapping("/doAssign")
-    public Result doAssign(@RequestParam  Long adminId,
+    public Result<?>  doAssign(@RequestParam  Long adminId,
                            @RequestParam Long[] roleId){
         roleService.saveAdminRole(adminId, roleId);
         return Result.ok(null);
     }
     @ApiOperation("分页查询")
     @GetMapping("/{page}/{linit}")
-    public Result getPageList(@PathVariable Long page, @PathVariable Long linit,
+    public Result<?>  getPageList(@PathVariable Long page, @PathVariable Long linit,
                                                     AdminQueryVo adminQueryVo){
-        Page pageParam = new Page(page,linit);
+        Page<?>  pageParam = new Page<>(page,linit);
         IPage<Admin> iPage=adminService.selectUserPage(adminQueryVo,pageParam);
         return  Result.ok(iPage);
 
     }
     @ApiOperation("根据id查询用户`")
     @GetMapping("/get/{id}")
-    public Result getById(@PathVariable Long id){
+    public Result<?>  getById(@PathVariable Long id){
         Admin admin = adminService.getById(id);
         return Result.ok(admin);
     }
     @ApiOperation("保存用户")
     @PostMapping("/save")
-    public Result save(@RequestBody Admin admin){
+    public Result<?>  save(@RequestBody Admin admin){
                 String password = admin.getPassword();
         String passqordMD5 = MD5.encrypt(password);
         admin.setPassword(passqordMD5);
@@ -73,19 +73,19 @@ public class AdminController {
     }
     @ApiOperation("更新用户")
     @PutMapping("/update")
-    public Result update(@RequestBody Admin admin) {
+    public Result<?>  update(@RequestBody Admin admin) {
         adminService.updateById(admin);
         return Result.ok(null);
     }
     @ApiOperation("删除用户")
     @GetMapping("/remove/{id}")
-    public  Result delete(@PathVariable Long id){
+    public  Result<?>  delete(@PathVariable Long id){
         adminService.removeById(id);
         return  Result.ok(null);
     }
     @ApiOperation("批量删除")
     @DeleteMapping("/batchRemove")
-    public Result batchRemove(@RequestBody List<Long> list){
+    public Result<?>  batchRemove(@RequestBody List<Long> list){
         adminService.removeByIds(list);
         return  Result.ok(null);
     }

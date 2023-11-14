@@ -30,7 +30,7 @@ public class IndexController {
      **/
     @ApiOperation("登录")
     @PostMapping("/login")
-    public Result login() throws UnsupportedEncodingException{
+    public Result<?>  login() throws UnsupportedEncodingException{
         Map<String, String> map = new HashMap<>();
         map.put("token", "token-admin");
         return Result.ok(map);
@@ -41,7 +41,7 @@ public class IndexController {
      **/
     @ApiOperation("获取信息")
     @GetMapping("/info")
-    public Result info() {
+    public Result<?>  info() {
         Map<String, String> map = new HashMap<>();
         map.put("name", "admin");
         map.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
@@ -52,7 +52,7 @@ public class IndexController {
      * */
     @ApiOperation("退出登录")
     @PostMapping("/logout")
-    public Result logout() {
+    public Result<?>  logout() {
         return Result.ok(null);
     }
 
