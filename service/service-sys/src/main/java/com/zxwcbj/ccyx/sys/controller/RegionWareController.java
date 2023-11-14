@@ -29,11 +29,12 @@ public class RegionWareController {
         IPage<RegionWare> ipage=regionWareService.getPageList(pageList, regionWareQueryVo);
         return Result.ok(ipage);
     }
-        @ApiOperation("添加区域")
-    @PostMapping("/save")
-    public Result<?> save(@RequestBody RegionWare regionWare){
-        regionWareService.save(regionWare);
-        return Result.ok();
+    ///添加开通区域
+    @ApiOperation("添加开通区域")
+    @PostMapping("save}")
+    public Result addRegionWare(@RequestBody RegionWare regionWare) {
+        regionWareService.saveReginWare(regionWare);
+        return Result.ok(null);
     }
         //删除开通区域
     @ApiOperation("删除开通区域")

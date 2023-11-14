@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 public interface RegionWareService extends IService<RegionWare> {
     //开通区域列表
     IPage<RegionWare> getPageList(Page<RegionWare> pageList, RegionWareQueryVo regionWareQueryVo);
-
+    //删除开通区域
     void updateStatus(Long id, Integer status);
+    //添加开通区域
+    void saveReginWare(RegionWare regionWare);
 }
