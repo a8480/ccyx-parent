@@ -15,15 +15,15 @@ import org.springframework.util.StringUtils;
 public class AdminServiceImpl extends ServiceImpl<AdminMapper, Admin> implements AdminService{
     @Override
     public IPage<Admin> selectUserPage(AdminQueryVo adminQueryVo, Page pageParam) {
-        String userName=adminQueryVo.getUsername();
+        String userName = adminQueryVo.getUsername();
         String name=adminQueryVo.getName();
         LambdaQueryWrapper<Admin> wrapper=new LambdaQueryWrapper<>();
-        if (!StringUtils.isEmpty(userName)){
+        if (!StringUtils.isEmpty(userName)) {
             //wrapper.like(Admin::getUsername,userName);
-            wrapper.eq(Admin::getUsername,userName);
+            wrapper.eq(Admin::getUsername, userName);
         }
-        if (!StringUtils.isEmpty(name)){
-            wrapper.like(Admin::getName,name);
+        if (!StringUtils.isEmpty(name)) {
+            wrapper.like(Admin::getName, name);
         }
         return baseMapper.selectPage(pageParam,wrapper);
     }
