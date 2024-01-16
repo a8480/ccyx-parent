@@ -1,22 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>guigu-ccyx-parent</artifactId>
         <groupId>com.zxwcbj</groupId>
+        <artifactId>ccyx-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
+    <artifactId>service</artifactId>
     <packaging>pom</packaging>
     <modules>
         <module>service-acl</module>
         <module>service-sys</module>
         <module>service-product</module>
+        <module>service-search</module>
+        <module>service-activity</module>
     </modules>
-    <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>service</artifactId>
-
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <dependencies>
         <!--依赖服务的工具类-->
         <dependency>
@@ -41,6 +48,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.4.1</version>
         </dependency>
 
         <!--mysql-->
@@ -49,17 +57,19 @@
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
 
-        <!-- 服务注册 -->
-<!--        <dependency>
-            <groupId>com.alibaba.cloud</groupId>
-            <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>-->
+<!--
+        &lt;!&ndash; 服务注册 &ndash;&gt;
+                <dependency>
+                    <groupId>com.alibaba.cloud</groupId>
+                    <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
+                </dependency>
 
-        <!-- 服务调用feign -->
-<!--        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>-->
+        &lt;!&ndash; 服务调用feign &ndash;&gt;
+                <dependency>
+                    <groupId>org.springframework.cloud</groupId>
+                    <artifactId>spring-cloud-starter-openfeign</artifactId>
+                </dependency>
+-->
 
         <!-- 流量控制 -->
         <dependency>
@@ -74,4 +84,14 @@
             <optional>true</optional>
         </dependency>
     </dependencies>
+
+        <build>
+            <finalName>${project.artifactId}</finalName>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                </plugin>
+            </plugins>
+        </build>
 </project>

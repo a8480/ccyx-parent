@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * 全局异常处理类
  *
- * @author a8480
+ * @author syoukan
  */
 /**
  * 是 Spring MVC 框架中的一个关键组件，负责将请求映射到具体的方法并处理这些方法的执行

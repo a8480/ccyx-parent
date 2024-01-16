@@ -51,4 +51,14 @@ public class PermissionController {
         permissionService.removeChildById(id);
         return Result.ok(null);
       }
+          /*
+     *给某个角色授权
+     * */
+    @ApiOperation("角色授权")
+    @PostMapping("doAssign")
+    public Result doAssign(@RequestParam  Long roleId,
+                           @RequestParam Long[] permissionId) {
+        permissionService.saveRolePermission(roleId, permissionId);
+        return Result.ok(null);
+    }
 }

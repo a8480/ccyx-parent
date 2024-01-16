@@ -6,15 +6,16 @@ import com.zxwcbj.ccyx.model.base.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /**
  * <p>
  * 用户
  * </p>
  *
- * @author qy
- * @since 2019-11-08
+ * @author syoukan
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @ApiModel(description = "用户")
 @TableName("admin")
@@ -29,16 +30,15 @@ public class Admin extends BaseEntity {
     @ApiModelProperty(value = "密码")
     @TableField("password")
     private String password;
-
-    @ApiModelProperty(value = "昵称")
-    @TableField("name")
-    private String name;
-
     @ApiModelProperty(value = "手机")
     @TableField("phone")
     private String phone;
 
-    @ApiModelProperty(value = "仓库id")
+    @ApiModelProperty(value = "邮箱")
+    @TableField("email")
+    private String email;
+
+    @ApiModelProperty(value = "身份id")
     @TableField("ware_id")
     private Long wareId;
 

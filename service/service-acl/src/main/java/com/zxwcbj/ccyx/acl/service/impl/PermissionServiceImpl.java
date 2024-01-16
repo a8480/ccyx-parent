@@ -86,7 +86,33 @@ public class PermissionServiceImpl extends ServiceImpl<PermissionManager, Permis
          //1 查询所有菜单
         List<Permission> list = baseMapper.selectList(null);
          //2 转换要求数据格式
-        return PermissionHelper.buildPermissions(list);
+        return PermissionHelper.buildPermission(list);
+    }
+    /**
+     * 给某个角色授权
+     *
+     * @param roleId
+     * @param permissionId
+     * @return void
+     **/
+    @Override
+    public void saveRolePermission(Long roleId, Long[] permissionId) {
+        //删除所有已分配权限
+        //根据角色id删除role_permisssion表里面对应数据r
+        LambdaQueryWrapper<RolePermission> wrapper = new LambdaQueryWrapper<>();
+        wrapper.eq(RolePermission::getId, roleId);
+        rolePermissionService.remove(wrapper);
+        //2 重新分配
+//遍历多个权限id，得到每个权限id，拿着每个权限id + 角色id添加角色权限关系表
+        List<RolePermission> rolePermissionList = new ArrayList<>();
+        for (Long rolepermission : permissionId) {
+            RolePermission rolePermission = new RolePermission();
+            rolePermission.setRoleId(roleId);
+            rolePermission.setPermissionId(rolepermission);
+            rolePermissionList.add(rolePermission);
+        }
+        rolePermissionService.saveBatch(rolePermissionList);
+
     }
 
 /**

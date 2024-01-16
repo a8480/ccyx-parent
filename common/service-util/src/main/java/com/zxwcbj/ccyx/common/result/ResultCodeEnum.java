@@ -4,7 +4,7 @@ import lombok.Getter;
 /**
  * 统一返回结果状态信息类
  *
- * @author a8480
+ * @author syoukan
  */
 @Getter
 public enum ResultCodeEnum {

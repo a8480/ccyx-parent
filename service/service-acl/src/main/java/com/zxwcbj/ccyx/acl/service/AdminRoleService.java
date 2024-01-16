@@ -5,7 +5,7 @@ import com.zxwcbj.ccyx.model.acl.AdminRole;
 import org.springframework.stereotype.Service;
 
 /**
- * @author a8480
+ * @author syoukan
  */
 @Service
 public interface AdminRoleService extends IService<AdminRole> {

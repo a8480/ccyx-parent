@@ -4,7 +4,7 @@ import lombok.Data;
 
 
 /**
- * @author a8480
+ * @author syoukan
  */
 @Data
 public class Result<T> {

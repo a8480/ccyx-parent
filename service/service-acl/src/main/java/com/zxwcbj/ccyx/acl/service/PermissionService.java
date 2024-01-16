@@ -17,7 +17,8 @@ public interface PermissionService extends IService<Permission> {
     List<Permission> getPermissionList();
     //递归删除
     void removeChildById(Long id);
-
+  //给某个角色授权
+    void saveRolePermission(Long roleId, Long[] permissionId);
     //获得所有菜单和己分配的菜单
          List<Permission> getPermissionByRoleId(Long roleId);
 }

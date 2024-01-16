@@ -18,7 +18,7 @@ public class AdminLoginVo implements Serializable {
     @ApiModelProperty(value = "姓名")
     private String name;
 
-    @ApiModelProperty(value = "仓库id")
+    @ApiModelProperty(value = "身份id")
     private Long wareId;
 
 }

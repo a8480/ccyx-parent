@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: service-activity
+  profiles:
+    active: dev
+#  cloud:
+#    nacos:
+#      discovery:
+#        server-addr:  localhost:8848  # 47.113.150.155:28848
+#        username: nacos
+#        password: nacos
+

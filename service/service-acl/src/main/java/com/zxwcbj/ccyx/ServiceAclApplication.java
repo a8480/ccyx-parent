@@ -5,7 +5,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 /**
  * 权限管理模块启动类
- * @author a8480
+ * @author syoukan
  */
 
 @SpringBootApplication

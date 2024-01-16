@@ -15,16 +15,20 @@ public class PermissionHelper {
      *
      * @return java.util.List<com.zxwcbj.ccyx.model.acl.Permission>
      **/
-  public static List<Permission> buildPermissions(List<Permission> list) {
-      List<Permission> permissionList=new ArrayList<>();
-      for (Permission permission:list){
-          if (permission.getPid()==0){
-              permission.setLevel(1);
-              permissionList.add(findChildren(permission,list));
-          }
-      }
-      return permissionList;
-  }
+  public static List<Permission> buildPermission(List<Permission> allList) {
+        //创建最终数据封装List集合
+        List<Permission> trees = new ArrayList<>();
+        //遍历所有菜单list集合，得到第一层数据，pid=0
+        for (Permission permission:allList) {
+            //pid=0数据，第一层数据
+            if(permission.getPid()==0) {
+                permission.setLevel(1);
+                //调用方法，从第一层开始往下找
+                trees.add(findChildren(permission,allList));
+            }
+        }
+        return trees;
+    }
     /**
      * 递归查找子节点
      *
@@ -33,16 +37,18 @@ public class PermissionHelper {
      * @return com.zxwcbj.ccyx.model.acl.Permission
      **/
     private static Permission findChildren(Permission permission, List<Permission> list) {
+        permission.setChildren(new ArrayList<Permission>());
                 //遍历List所有菜单数据
 //判断：当前节点id = pid是否一样，封装，递归往下找
-        for (Permission per:list){
-            if (per.getPid().longValue()==permission.getId().longValue()){
-                per.setLevel(permission.getLevel()+1);
-                if (per.getChildren()==null){
-                    per.setChildren(new ArrayList<>());
+        for (Permission it:list){
+            if (permission.getId().longValue()==it.getPid().longValue()){
+                int level=permission.getLevel()+1;
+                it.setLevel(level);
+                if (permission.getChildren()==null){
+                    permission.setChildren(new ArrayList<>());
                 }
                 //封装,查询下一层数据
-                per.getChildren().add(findChildren(per,list));
+                permission.getChildren().add(findChildren(it,list));
             }
         }
       return permission;

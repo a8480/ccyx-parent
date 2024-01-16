@@ -5,7 +5,7 @@ import lombok.Data;
 
 /**
  * 统一异常处理
- * @author a8480
+ * @author syoukan
  */
 @Data
 public class CcyxException extends RuntimeException {

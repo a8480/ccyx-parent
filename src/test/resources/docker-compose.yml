@@ -1,0 +1,65 @@
+version: "3"
+services:
+  nacos:
+    image: nacos/nacos-server:v2.2.1-slim
+    container_name: "ccyx-nacos"
+    ports:
+      - "9848:9848"
+      - "9849:9849"
+      - "8108:8848"
+    networks:
+      - ccyx
+    environment:
+      - JVM_XMS=128m  # 修正此行
+      - JVM_XMX=128m
+      - JVM_MS=64m
+      - JVM_MMS=64m
+      - MODE=standalone
+      - NACOS_REPLICAS=1
+      - PREFER_HOST_MODE=172.16.0.3
+    volumes:
+      - /mydata/ccyx/nacos/logs:/home/nacos/logs
+      - /mydata/ccyx/nacos/plugins:/home/nacos/plugins
+        - /mydata/ccyx/nacos/data:/home/nacos/data
+      - /mydata/ccyx/nacos/config/application.properties:/home/nacos/conf/application.properties
+
+networks:
+  ccyx:
+    external: true
+
+elasticSearch:
+  image: elasticsearch:7.8.0
+  container_name: "ccyx-elasticsearch"
+  ports:
+    - "9200:9200"
+    - "9300:9300"
+  networks:
+    - ccyx
+  environment:
+    - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    - cluster.name=tommy-es
+    - bootstrap.memory_lock=true
+    - discovery.type=single-node
+  volumes:
+    - /mydata/ccyx/elasticsearch/data:/usr/share/elasticsearch/data
+
+kibana:
+  image: kibana:7.8.0
+  container_name: "kibana"
+  ports:
+    - "5601:5601"
+  networks:
+    - ccyx
+  depends_on:
+    - elasticSearch
+
+rabbitMQ:
+  image: rabbitmq:3.8-management
+  container_name: "ccyx-rabbitMQ"
+  networks:
+    - ccyx
+  ports:
+    - "5672:5672"
+    - "15672:15672"
+  networks:
+    - ccyx

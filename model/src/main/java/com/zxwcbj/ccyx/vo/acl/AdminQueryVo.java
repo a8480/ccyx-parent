@@ -13,8 +13,7 @@ import java.io.Serializable;
  * 用户查询实体
  * </p>
  *
- * @author qy
- * @since 2019-11-08
+ * @author syoukan
  */
 @Data
 @ApiModel(description = "用户查询实体")
@@ -25,7 +24,7 @@ public class AdminQueryVo implements Serializable {
     @ApiModelProperty(value = "用户名")
     private String username;
 
-    @ApiModelProperty(value = "昵称")
+    @ApiModelProperty(value = "姓名")
     private String name;
 
 }

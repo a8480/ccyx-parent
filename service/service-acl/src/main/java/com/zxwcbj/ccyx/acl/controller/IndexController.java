@@ -1,20 +1,25 @@
 package com.zxwcbj.ccyx.acl.controller;
 
+import com.zxwcbj.ccyx.acl.service.AdminService;
 import com.zxwcbj.ccyx.common.result.Result;
+import com.zxwcbj.ccyx.model.acl.Admin;
+import  com.zxwcbj.ccyx.model.acl.Student;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 
 import java.util.HashMap;
 import java.util.Map;
+
 /**
  * 登录接口
  *
- * @author a8480
+ * @author syoukan
  */
 @RestController
-@Api(tags = "登录接口")
+@Api(tags = "登录-注册接口")
 //访问路径
 @RequestMapping("/admin/acl/index")
 /*
@@ -25,15 +30,16 @@ import java.util.Map;
  * */
 @CrossOrigin
 public class IndexController {
+    @Autowired
+    AdminService adminService;
+
     /**
      * 登录
      **/
     @ApiOperation("登录")
     @PostMapping("/login")
-    public Result<?>  login() {
-        Map<String, String> map = new HashMap<>();
-        map.put("token", "token-admin");
-        return Result.ok(map);
+    public <T> Result<?> login(@RequestBody Admin admin) {
+        return adminService.selectByUsername(admin);
     }
 
     /**
@@ -41,18 +47,19 @@ public class IndexController {
      **/
     @ApiOperation("获取信息")
     @GetMapping("/info")
-    public Result<?>  info() {
+    public Result<?> info() {
         Map<String, String> map = new HashMap<>();
         map.put("name", "admin");
-        map.put("avatar", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+        map.put("avataqqr", "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
         return Result.ok(map);
     }
+
     /**
-     *  退出登录
-     * */
+     * 退出登录
+     */
     @ApiOperation("退出登录")
     @PostMapping("/logout")
-    public Result<?>  logout() {
+    public Result<?> logout() {
         return Result.ok(null);
     }
 

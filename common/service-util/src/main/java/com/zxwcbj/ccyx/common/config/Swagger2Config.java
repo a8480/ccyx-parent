@@ -20,7 +20,7 @@ import java.util.List;
 /**
  * Swagger2配置信息
  * 接口测试的配置类
- * @author a8480
+ * @author syoukan
  */
 @Configuration
 @EnableSwagger2WebMvc

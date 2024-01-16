@@ -17,12 +17,12 @@ import java.util.Map;
 
 /**
  *
- * @author a8480
+ * @author syoukan
  */
 @Api(tags = "用户接口")
 @RestController
 @RequestMapping("/admin/acl/user")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class AdminController {
     @Autowired
     RoleService roleService;
@@ -74,11 +74,14 @@ public class AdminController {
     @ApiOperation("更新用户")
     @PutMapping("/update")
     public Result<?>  update(@RequestBody Admin admin) {
+         String password = admin.getPassword();
+         String passqordMD5 = MD5.encrypt(password);
+         admin.setPassword(passqordMD5);
         adminService.updateById(admin);
         return Result.ok(null);
     }
     @ApiOperation("删除用户")
-    @GetMapping("/remove/{id}")
+    @DeleteMapping("/remove/{id}")
     public  Result<?>  delete(@PathVariable Long id){
         adminService.removeById(id);
         return  Result.ok(null);

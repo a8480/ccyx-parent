@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 /**
- * @author a8480
+ * @author syoukan
  */
 @Service
 public interface RoleService extends IService<Role> {

@@ -21,7 +21,7 @@ public class CodeGet {
         // 全局配置
         GlobalConfig gc = new GlobalConfig();
             //C:\software\项目\ccyx
-        gc.setOutputDir("C:\\software\\项目\\ccyx-parent\\service\\service-product" + "/src/main/java");
+        gc.setOutputDir("C:\\software\\项目\\ccyx-parent\\service\\service-search" + "/src/main/java");
 
         gc.setServiceName("%sService");    //去掉Service接口的首字母I
         gc.setAuthor("onsimple");
@@ -30,7 +30,7 @@ public class CodeGet {
 
         // 3、数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
-        dsc.setUrl("jdbc:mysql://106.14.186.53:53306/shequ-product?serverTimezone=GMT%2B8&useSSL=false");
+        dsc.setUrl("jdbc:mysql://106.14.186.53:53306/shequ-search?serverTimezone=GMT%2B8&useSSL=false");
         dsc.setDriverName("com.mysql.cj.jdbc.Driver");
         dsc.setUsername("root");
         dsc.setPassword("bKW3b5cJYmFoNugnrK");
@@ -41,7 +41,7 @@ public class CodeGet {
         PackageConfig pc = new PackageConfig();
         //com.zxwcbj.ccyx.sys
         pc.setParent("com.zxwcbj.ccyx");
-        pc.setModuleName("product"); //模块名
+        pc.setModuleName("search"); //模块名
         pc.setController("controller");
         pc.setService("service");
         pc.setMapper("mapper");
